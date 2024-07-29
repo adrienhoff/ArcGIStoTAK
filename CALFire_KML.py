@@ -9,6 +9,7 @@ import os
 from shapely.geometry import Polygon, mapping
 from shapely.ops import unary_union
 from datetime import datetime, timedelta
+import socket
 
 OUTPUT_DIR = r"G:\My Drive\KML"
 
