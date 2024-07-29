@@ -100,59 +100,6 @@ def fetch_fire_data():
         print(f"Error fetching fire data: {e}")
         return []
 
-##def create_polygon_placemark(attributes, polygon_data, description_data):
-##    # Create the main Placemark for the outer polygon
-##    placemark = ET.Element("Placemark")
-##    name = ET.SubElement(placemark, "name")
-##    name.text = attributes.get("incident_name", "")
-##    visibility = ET.SubElement(placemark, "visibility")
-##    visibility.text = "true"
-##    styleurl = ET.SubElement(placemark, "styleUrl")
-##    styleurl.text = "#-1073741762"
-##
-##    # Define the HTML structure to be prepended
-##    html_structure = """<![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
-##<head><meta http-equiv="content-type" content="text/html; charset=UTF-16"></head>
-##<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;"><table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
-##<tr style="text-align:center;font-weight:bold;background:#9CBCE2"><td></td></tr>
-##<tr><td><table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
-##"""
-##
-##    # Concatenate the HTML structure with the description data
-##    full_description = html_structure + description_data
-##
-##    description = ET.SubElement(placemark, "description")
-##    description.text = full_description
-##
-##    # Define the outer Polygon element
-##    polygon = ET.SubElement(placemark, "Polygon")
-##    extrude = ET.SubElement(polygon, "extrude")
-##    extrude.text = "0"  # Set to '0' to disable extrusion
-##    altitude_mode = ET.SubElement(polygon, "altitudeMode")
-##    altitude_mode.text = "clampToGround"
-##    
-##    # Handle outer boundary
-##    outer_boundary_is = ET.SubElement(polygon, "outerBoundaryIs")
-##    linear_ring = ET.SubElement(outer_boundary_is, "LinearRing")
-##    coordinates = ET.SubElement(linear_ring, "coordinates")
-##    
-##    if "rings" in polygon_data and len(polygon_data["rings"]) > 0:
-##        outer_coords = polygon_data["rings"][0]
-##        transformed_outer_coords = ["{},{},0".format(coord[0], coord[1]) for coord in outer_coords]
-##        coordinates.text = " ".join(transformed_outer_coords)
-##    
-##    # Handle inner boundaries
-##    for i in range(1, len(polygon_data["rings"])):
-##        inner_boundary_is = ET.SubElement(polygon, "outerBoundaryIs")
-##        inner_linear_ring = ET.SubElement(inner_boundary_is, "LinearRing")
-##        inner_coordinates = ET.SubElement(inner_linear_ring, "coordinates")
-##        
-##        inner_coords = polygon_data["rings"][i]
-##        transformed_inner_coords = ["{},{},0".format(coord[0], coord[1]) for coord in inner_coords]
-##        inner_coordinates.text = " ".join(transformed_inner_coords)
-##    
-##    return placemark
-
 
 def create_polygon_placemark(attributes, polygon_data, description_data):
     base_id = attributes.get("OBJECTID", str(time.time()))
